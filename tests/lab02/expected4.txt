@@ -1,0 +1,16 @@
+
+Case: Already sorted
+Original: 1 1 2 2 3 3 4 4 5 5 6
+Sorted: 1 1 2 2 3 3 4 4 5 5 6
+Found at index 5 (value 3).
+
+Case: Reverse order
+Original: 6 5 5 4 4 3 3 2 2 1 1
+Sorted: 1 1 2 2 3 3 4 4 5 5 6
+Found at index 10 (value 6).
+
+Case: Random order
+Original: 3 1 1 2 4 6 2 3 5 4 5
+Sorted: 1 1 2 2 3 3 4 4 5 5 6
+Not found.
+

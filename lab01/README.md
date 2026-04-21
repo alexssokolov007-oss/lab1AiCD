@@ -1,23 +1,23 @@
-# Lab 01
+# Лабораторная работа 1
 
-Variant 19: count the number of vertices in an ordered binary tree (BST).
+**ФИО:** Соколов Александр Сергеевич
 
-Build:
+**Вариант:** 19
 
-```bash
-gcc -std=c11 -O2 -Wall -Wextra -pedantic main.c -o lab01
-```
+## Задание
 
-Run:
+Реализовать двоичное дерево поиска с операциями добавления, вывода, удаления узлов и вычисления функции по варианту.
 
-```bash
-./lab01
-```
+Для варианта 19 требуется определить число вершин двоичного дерева.
 
-Quiet mode (for tests):
+## Сборка и запуск
 
 ```bash
-./lab01 --quiet
+make run
 ```
 
-Report: `report.md`.
+## Тесты
+
+```bash
+make run_tests
+```

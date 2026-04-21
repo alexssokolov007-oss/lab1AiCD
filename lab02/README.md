@@ -1,26 +1,28 @@
-# Lab 02
+# Лабораторная работа 2
 
-Variant 19:
-- Sort method: Bubble sort (method 3).
-- Table structure: 1 (integer key, keys+data stored together).
-- Minimum number of elements: 11.
+**ФИО:** Соколов Александр Сергеевич
 
-Build:
+**Вариант:** 19
 
-```bash
-gcc -std=c11 -O2 -Wall -Wextra -pedantic main.c -o lab02
-```
+## Задание
 
-Run:
+Реализовать таблицу со структурой №1: целый ключ и данные хранятся вместе в одной записи.
 
-```bash
-./lab02
-```
+Для `N = 19`:
+- метод сортировки: `((N - 1) % 8) + 1 = 3` — пузырьковая сортировка;
+- структура таблицы: `((N + 5) % 8) + 1 = 1`;
+- минимальное количество элементов для структуры №1: 11.
 
-Quiet mode + deterministic random (for tests):
+Программа читает таблицу из `input.txt`, демонстрирует сортировку на трех случаях и выполняет бинарный поиск по ключу.
+
+## Сборка и запуск
 
 ```bash
-./lab02 --quiet --seed 1
+make run
 ```
 
-Report: `report.md`.
+## Тесты
+
+```bash
+make run_tests
+```

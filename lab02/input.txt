@@ -1,0 +1,12 @@
+11
+42 alpha
+7 beta
+19 gamma
+3 delta
+88 epsilon
+55 zeta
+12 eta
+31 theta
+64 iota
+1 kappa
+27 lambda

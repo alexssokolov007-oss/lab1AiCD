@@ -17,11 +17,13 @@ a / (-b)    →  -(a / b)
 ## Сборка и запуск
 
 ```bash
-make run
+gcc -std=c11 -Wall -Wextra -pedantic -o main main.c
+main.exe
 ```
 
 ## Тесты
 
 ```bash
-make run_tests
+gcc -std=c11 -Wall -Wextra -pedantic -DUNIT_TEST -o tests tests.c main.c
+tests.exe
 ```

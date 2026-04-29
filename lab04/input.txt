@@ -1,0 +1,39 @@
+# Тестовый файл команд — 20+ узлов
+# Формат: <номер операции> [ключ] [значение]
+# 1=добавить, 2=удалить, 3=печать, 4=поиск
+
+1 apple  1.5
+1 mango  2.3
+1 kiwi   3.7
+1 plum   4.1
+1 grape  5.9
+1 peach  6.2
+1 lemon  7.0
+1 lime   8.4
+1 fig    9.1
+1 pear   10.5
+1 berry  11.0
+1 dates  12.7
+1 melon  13.3
+1 olive  14.6
+1 prune  15.0
+1 guava  16.8
+1 papya  17.2
+1 mango  99.9
+3
+4 apple
+4 mango
+4 xyz
+2 kiwi
+2 plum
+3
+1 cherry 20.0
+1 avoca  21.5
+1 tamar  22.3
+3
+4 cherry
+2 apple
+2 berry
+2 dates
+3
+4 grape

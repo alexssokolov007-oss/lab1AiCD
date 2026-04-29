@@ -1,0 +1,129 @@
+1 apple 1.5
+Добавлен: apple = 1.5
+
+1 mango 2.3
+Добавлен: mango = 2.3
+
+1 kiwi 3.7
+Добавлен: kiwi = 3.7
+
+1 plum 4.1
+Добавлен: plum = 4.1
+
+1 grape 5.9
+Добавлен: grape = 5.9
+
+1 peach 6.2
+Добавлен: peach = 6.2
+
+1 lemon 7
+Добавлен: lemon = 7
+
+1 lime 8.4
+Добавлен: lime = 8.4
+
+1 fig 9.1
+Добавлен: fig = 9.1
+
+1 pear 10.5
+Добавлен: pear = 10.5
+
+1 berry 11
+Добавлен: berry = 11
+
+1 dates 12.7
+Добавлен: dates = 12.7
+
+1 melon 13.3
+Добавлен: melon = 13.3
+
+1 olive 14.6
+Добавлен: olive = 14.6
+
+1 prune 15
+Добавлен: prune = 15
+
+1 guava 16.8
+Добавлен: guava = 16.8
+
+1 papya 17.2
+Добавлен: papya = 17.2
+
+1 mango 99.9
+Добавлен: mango = 99.9
+
+3
+Дерево:
+[dates:12.7|kiwi:3.7|mango:99.9|peach:6.2]
++-- [apple:1.5|berry:11]
++-- [fig:9.1|grape:5.9|guava:16.8]
++-- [lemon:7|lime:8.4]
++-- [melon:13.3|olive:14.6|papya:17.2]
+\-- [pear:10.5|plum:4.1|prune:15]
+
+4 apple
+Найдено: apple = 1.5
+
+4 mango
+Найдено: mango = 99.9
+
+4 xyz
+Ключ "xyz" не найден.
+
+2 kiwi
+Удалён: kiwi
+
+2 plum
+Удалён: plum
+
+3
+Дерево:
+[dates:12.7|lemon:7|mango:99.9|peach:6.2]
++-- [apple:1.5|berry:11]
++-- [fig:9.1|grape:5.9|guava:16.8]
++-- [lime:8.4]
++-- [melon:13.3|olive:14.6|papya:17.2]
+\-- [pear:10.5|prune:15]
+
+1 cherry 20
+Добавлен: cherry = 20
+
+1 avoca 21.5
+Добавлен: avoca = 21.5
+
+1 tamar 22.3
+Добавлен: tamar = 22.3
+
+3
+Дерево:
+[dates:12.7|lemon:7|mango:99.9|peach:6.2]
++-- [apple:1.5|avoca:21.5|berry:11|cherry:20]
++-- [fig:9.1|grape:5.9|guava:16.8]
++-- [lime:8.4]
++-- [melon:13.3|olive:14.6|papya:17.2]
+\-- [pear:10.5|prune:15|tamar:22.3]
+
+4 cherry
+Найдено: cherry = 20
+
+2 apple
+Удалён: apple
+
+2 berry
+Удалён: berry
+
+2 dates
+Удалён: dates
+
+3
+Дерево:
+[fig:9.1|lemon:7|mango:99.9|peach:6.2]
++-- [avoca:21.5|cherry:20]
++-- [grape:5.9|guava:16.8]
++-- [lime:8.4]
++-- [melon:13.3|olive:14.6|papya:17.2]
+\-- [pear:10.5|prune:15|tamar:22.3]
+
+4 grape
+Найдено: grape = 5.9
+

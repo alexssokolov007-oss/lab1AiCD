@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 #define N        2
 #define MAX_KEYS (2 * N)
@@ -406,6 +409,10 @@ void process_file(BTree *t, const char *in_path, const char *out_path) {
 
 #ifndef UNIT_TEST
 int main(void) {
+#ifdef _WIN32
+    SetConsoleOutputCP(65001);
+    SetConsoleCP(65001);
+#endif
     printf("=================================================\n");
     printf("  Лаб. работа 4, Вариант 19 — B-дерево (n=2)\n");
     printf("=================================================\n");

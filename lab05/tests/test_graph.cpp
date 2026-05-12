@@ -1,74 +1,100 @@
 #include <gtest/gtest.h>
-#include "graph.hpp"
-#include "floyd_warshall.hpp"
+#include <vector>
+#include <cmath>
+#include "graph.h"
+#include "floyd_warshall.h"
 
 TEST(FloydWarshall, BasicShortestDistances) {
-    Graph g(4);
-    g.addEdge(0, 1, 3.0);
-    g.addEdge(1, 2, 2.0);
-    g.addEdge(2, 3, 1.0);
-    g.addEdge(0, 2, 6.0);
-    g.addEdge(1, 3, 8.0);
+    Graph g;
+    graph_init(&g, 4);
+    graph_add_edge(&g, 0, 1, 3.0);
+    graph_add_edge(&g, 1, 2, 2.0);
+    graph_add_edge(&g, 2, 3, 1.0);
+    graph_add_edge(&g, 0, 2, 6.0);
+    graph_add_edge(&g, 1, 3, 8.0);
 
-    auto res = floydWarshall(g);
+    FWResult res = floyd_warshall(&g);
 
-    ASSERT_FALSE(res.hasNegativeCycle);
-    EXPECT_DOUBLE_EQ(res.dist[0][1], 3.0);
-    EXPECT_DOUBLE_EQ(res.dist[0][2], 5.0);
-    EXPECT_DOUBLE_EQ(res.dist[0][3], 6.0);
-    EXPECT_DOUBLE_EQ(res.dist[1][3], 3.0);
+    ASSERT_FALSE(res.has_negative_cycle);
+    EXPECT_DOUBLE_EQ(res.dist[0 * 4 + 1], 3.0);
+    EXPECT_DOUBLE_EQ(res.dist[0 * 4 + 2], 5.0);
+    EXPECT_DOUBLE_EQ(res.dist[0 * 4 + 3], 6.0);
+    EXPECT_DOUBLE_EQ(res.dist[1 * 4 + 3], 3.0);
+
+    fw_result_free(&res);
+    graph_free(&g);
 }
 
 TEST(FloydWarshall, DisconnectedVertices) {
-    Graph g(3);
-    g.addEdge(0, 1, 5.0);
+    Graph g;
+    graph_init(&g, 3);
+    graph_add_edge(&g, 0, 1, 5.0);
 
-    auto res = floydWarshall(g);
+    FWResult res = floyd_warshall(&g);
 
-    ASSERT_FALSE(res.hasNegativeCycle);
-    EXPECT_EQ(res.dist[0][2], Graph::INF);
-    EXPECT_EQ(res.dist[1][2], Graph::INF);
-    EXPECT_EQ(res.dist[2][0], Graph::INF);
-    EXPECT_EQ(res.dist[2][1], Graph::INF);
+    ASSERT_FALSE(res.has_negative_cycle);
+    EXPECT_TRUE(std::isinf(res.dist[0 * 3 + 2]));
+    EXPECT_TRUE(std::isinf(res.dist[1 * 3 + 2]));
+    EXPECT_TRUE(std::isinf(res.dist[2 * 3 + 0]));
+    EXPECT_TRUE(std::isinf(res.dist[2 * 3 + 1]));
+
+    fw_result_free(&res);
+    graph_free(&g);
 }
 
 TEST(FloydWarshall, NegativeEdgeWeights) {
-    Graph g(3);
-    g.addEdge(0, 1,  4.0);
-    g.addEdge(1, 2, -2.0);
-    g.addEdge(0, 2,  5.0);
+    Graph g;
+    graph_init(&g, 3);
+    graph_add_edge(&g, 0, 1,  4.0);
+    graph_add_edge(&g, 1, 2, -2.0);
+    graph_add_edge(&g, 0, 2,  5.0);
 
-    auto res = floydWarshall(g);
+    FWResult res = floyd_warshall(&g);
 
-    ASSERT_FALSE(res.hasNegativeCycle);
-    EXPECT_DOUBLE_EQ(res.dist[0][2], 2.0);
-    EXPECT_DOUBLE_EQ(res.dist[0][1], 4.0);
+    ASSERT_FALSE(res.has_negative_cycle);
+    EXPECT_DOUBLE_EQ(res.dist[0 * 3 + 2], 2.0);
+    EXPECT_DOUBLE_EQ(res.dist[0 * 3 + 1], 4.0);
+
+    fw_result_free(&res);
+    graph_free(&g);
 }
 
 TEST(FloydWarshall, NegativeCycleDetected) {
-    Graph g(3);
-    g.addEdge(0, 1,  1.0);
-    g.addEdge(1, 2, -3.0);
-    g.addEdge(2, 0,  1.0);
+    Graph g;
+    graph_init(&g, 3);
+    graph_add_edge(&g, 0, 1,  1.0);
+    graph_add_edge(&g, 1, 2, -3.0);
+    graph_add_edge(&g, 2, 0,  1.0);
 
-    auto res = floydWarshall(g);
+    FWResult res = floyd_warshall(&g);
 
-    EXPECT_TRUE(res.hasNegativeCycle);
+    EXPECT_TRUE(res.has_negative_cycle);
+
+    fw_result_free(&res);
+    graph_free(&g);
 }
 
 TEST(FloydWarshall, PathReconstruction) {
-    Graph g(4);
-    g.addEdge(0, 1, 1.0);
-    g.addEdge(1, 3, 1.0);
-    g.addEdge(0, 2, 2.0);
-    g.addEdge(2, 3, 2.0);
+    Graph g;
+    graph_init(&g, 4);
+    graph_add_edge(&g, 0, 1, 1.0);
+    graph_add_edge(&g, 1, 3, 1.0);
+    graph_add_edge(&g, 0, 2, 2.0);
+    graph_add_edge(&g, 2, 3, 2.0);
 
-    auto res = floydWarshall(g);
+    FWResult res = floyd_warshall(&g);
 
-    ASSERT_FALSE(res.hasNegativeCycle);
-    EXPECT_DOUBLE_EQ(res.dist[0][3], 2.0);
+    ASSERT_FALSE(res.has_negative_cycle);
+    EXPECT_DOUBLE_EQ(res.dist[0 * 4 + 3], 2.0);
 
-    auto path = reconstructPath(res, 0, 3);
+    int path_len = 0;
+    int *path = reconstruct_path(&res, 0, 3, &path_len);
     std::vector<int> expected = {0, 1, 3};
-    EXPECT_EQ(path, expected);
+    ASSERT_EQ(path_len, (int)expected.size());
+    for (int i = 0; i < path_len; ++i)
+        EXPECT_EQ(path[i], expected[i]);
+    free(path);
+
+    fw_result_free(&res);
+    graph_free(&g);
 }
